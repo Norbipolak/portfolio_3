@@ -1,0 +1,25 @@
+@mixin mapMixin($clsName, $map, $prop) {
+    @each $key, $value in $map {
+        #{$clsName}-#{$key} {
+            #{$prop}: $value!important;
+        }
+    }
+}
+
+@mixin listMixin($clsName, $list, $prop) {
+    @each $value in $list {
+        #{$clsName}-#{$value} {
+            #{prop}:$value!important;
+        }
+    }
+}
+
+@mixin loopMixin($from, $to, $step, $clsName, $prop, $unit) {
+    @while $from <= $to {
+        #{$clsName}-#{$from} {
+            #{$prop}: #{$from}#{$unit}!important;
+        }
+
+        $from:$from+$step;
+    }
+}

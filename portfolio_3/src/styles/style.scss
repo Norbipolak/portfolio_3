@@ -1,0 +1,179 @@
+/*
+ide importáljuk be az összes scss file-t, majd az App-ben ezt a style.scss-t fogjuk importálni és így lefordítás nélkül lehet majd 
+dolgozni velük!!! 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import "variables.scss";
+@import "mixins.scss";
+@import "init.scss";
+@import "settings.scss";
+@import "grid.scss";
+@import "flex.scss";
+@import "inputs.scss";
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Nunito", sans-serif;
+    margin: 10px 0;
+}
+
+h1 {
+    color: map-get($colors, "primary");
+}
+
+h2 {
+    color: map-get($colors, "primary-lighter");
+}
+
+h3 {
+    color: map-get($colors, "secondary-darker");
+}
+
+h4 {
+    color: map-get($colors, "secondary");
+}
+
+h5 {
+    color: map-get($colors, "dark-grey");
+}
+
+h6 {
+    color: map-get($colors, "mid-grey");
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+nav {
+    height: 80px;
+    background-color: map-get($colors, "primary");
+
+    ul {
+        display: flex; 
+        justify-content: center;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 80px;
+        &:hover {
+            background-color: map-get($colors, "secondary");
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        padding: 15px;
+    }
+}
+
+.selected-menu {
+    background-color: map-get($colors, "secondary");
+}
+
+.loading-component {
+    position: relative;
+    text-align: center;
+}
+
+.loading-holder {
+    position: relative;
+    background-color: map-get($colors, "light-grey");
+    height: 10px;
+}
+
+.loading-line {
+    position: absolute;
+    background-color: map-get($colors, "primary");
+    height: 10px; 
+    /*
+    fontos, hogy ugyanolyan magas legyen, mint a loading-holder a szélességet, pedig majd megadjuk a styles:{{ width: "80px"}}
+    mondjuk így a jsx elemnél 
+
+    azt szeretnénk, hogy balra igazodjon, amin rajta van, tehát a loading-holder-re, meg, hogy alul és felül is igazodjon 
+    */
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+/*
+Itt nagyon fontos, hogy kell a position: fixed, mert ilyenkor ez az elem nem fog menni, mikor húzzuk lefele a képernyőt 
+ilyen modal dolgoknál ez fontos, hogy position: fixed legyen
+*/
+
+.modal-img {
+    width: 100%;
+    /*
+    100%-a lesz a szélessége ennek az elemnek a parent-jához, képest, mivel ez egy position: fixed, ezért 100vw fog felvenni 
+    tehát a látható képernyő szélességének 100%-át  
+    */
+    height: 100%;
+    /*
+    ugyanaz, mint a width-nél, mivel itt position: fixed van, ezért felveszi a 100vh-ot, a teljes látható képernyő 100%-os magassága 
+    */
+    position: fixed;
+    /*
+    a viewport-hoz képest ez az elem fix lesz, tehát ha megyünk lefele az oldalon ez nem fog elmozdulni!!!!!!!!!!!!!!
+    */
+    left: 0;
+    /*
+    a parent, tehát, amiben benne van, annak a bal szélétől 0px-re lesz!! ebben az esetben, mivel fixed ez a viewportnak a bal oldala lesz!! 
+    és ugyanígy a top, bottom, right!! 
+    */
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    /*
+    nagyon fontos itt ez a margin: auto, mert együtt a left, right, top, bottom 0-val ez horizontálisan és vertikálisan is középre helyezi az 
+    elemet amiben benne van!!! 
+    Ez nagyon fontos, hogy együtt müköduk ez a top, bottom, left, right: 0 és a margin: auto!!!! 
+    */
+    background-color: rgba(0,0,0,0.7);
+    /*
+    Ez a 0,0,0 ez black és az rgba-ban az a, azzal tudjuk beállítani az opcatity-t, ami jelen esetben 0.7 opacity lesz!! 
+    */
+    /*
+    Következőkkel meg beállítjuk a child elemeket, amik benne lesznek ebbe a modal-img-ben horizontálisan és vertikálisan is középre!!! 
+    */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+itt lesz még egy div, amiben majd benne lesz a képünk 
+ez azért lesz position: relative, mert majd lesz egy x gomb -> modal-x, ami majd ezen lesz rajta!!! 
+width: 80% meg azért, hogy ennyit takarjon el a modal-img-ből a kép majd!!!
+*/
+
+.modal-img-holder {
+    position: relative;
+    width: 80%;
+}
+
+/*
+itt meg ha van egy img egy div-ben, akkor mindig, hogy annak a 100%-t vegye fel!!! 
+*/
+
+.modal-img-holder img {
+    width: 100%;
+}
+
+.modal-x {
+    /*
+    Ez meg rajta lesz a modal-img-holder-en, ezért kell a position: absolute meg azt akarjuk, hogy jobb felül legyen, ezért a top-tól 
+    eltávolodik csak 20px-t meg a right-tól is ugyanennyit!!! 
+    */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 25px;
+    color: map-get($colors, "danger");
+    cursor: pointer;
+}
+
