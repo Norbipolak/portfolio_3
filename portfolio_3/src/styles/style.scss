@@ -65,7 +65,7 @@ nav {
 
     a {
         text-decoration: none;
-        color: white;
+        color: white!important;
         padding: 15px;
     }
 }
@@ -175,5 +175,23 @@ itt meg ha van egy img egy div-ben, akkor mindig, hogy annak a 100%-t vegye fel!
     font-size: 25px;
     color: map-get($colors, "danger");
     cursor: pointer;
+}
+
+a:link {
+    color: map-get($colors, "secondary");
+
+}
+
+a:visited {
+    color: map-get($colors, "secondary-darker");
+}
+
+.hiding {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: black;
 }
 

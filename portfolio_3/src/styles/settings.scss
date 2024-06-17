@@ -14,6 +14,7 @@ nagyon fontos, hogy amit csináltunk @mixin-eket azt az @include-val kell meghí
 @include mapMixin($spacings, "pr", padding-right);
 @include mapMixin($spacings, "pt", padding-top);
 @include mapMixin($spacings, "pb", padding-bottom);
+@include mapMixin($fontSizes, "font", font-size);
 
 @include listMixin($textTransforms, "transform", text-transform);
 @include listMixin($displays, "d", display);

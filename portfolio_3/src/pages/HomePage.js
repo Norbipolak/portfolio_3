@@ -2,6 +2,7 @@ import { useState } from "react";
 import ImgComponent from "../components/ImgComponent";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
+import TextEffect from "../components/TextEffect";
 
 function HomePage() {
     const [languageImages, setLanguageImages] = useState([
@@ -29,6 +30,8 @@ function HomePage() {
     return(
         <>
             <div className="container-xl bg-light-grey p-md">
+                <TextEffect text={"Szöveg"} classes={["text-center", "font-lg"]} sec={0.5}/>
+
                 <h1>Rólam</h1>
                 <ImgComponent src={require("../images/man-avatar.jpg")}
                     classes={["float-left", "border-primary", "mr-md", "mb-md", "maxw-200", "img-holder"]}/>
@@ -65,8 +68,9 @@ function HomePage() {
                 </div>
             </div>
 
-            <div className="container-xl bg-light-grey p-md">
+            <div className="container-xl bg-light-grey p-md" style={{minHeight: "1000px"}}> 
                 <h1>Rólam</h1>
+                <TextEffect offset={100} text={"Szöveg"} classes={["text-center", "font-lg"]} sec={0.5}/>
                 <ImgComponent src={require("../images/man-avatar.jpg")}
                     classes={["float-left", "border-primary", "mr-md", "mb-md", "maxw-200", "img-holder"]}/>
                 <p>
@@ -91,3 +95,12 @@ function HomePage() {
 }
 
 export default HomePage;
+
+/*
+Megcsináltuk a TextEffefect-et, most hívjuk meg, amire figyelni kell, hogy amikor megadunk neki a classes-t, az egy tömb és az osztályokat 
+amiket megadunk neki azt egy tömbbe, kell írni, mert majd automatikusan ezt join-olva lesz és ilyen formában kell megadni neki 
+->
+classes={["font-lg", "p-md"]}
+tehát mindegyiknek van egy "" és ezeket vesszővel választjuk el!!! 
+
+*/

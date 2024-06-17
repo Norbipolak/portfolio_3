@@ -32,6 +32,15 @@ $spacings:(
     "xxl": 30px,
 );
 
+$fontSizes:(
+    "xs": 8px,
+    "sm": 12px,
+    "md": 16px,
+    "lg": 20px,
+    "xl": 24px,
+    "xxl": 28px
+);
+
 $textTransforms: uppercase, lowercase, capitalize, none, full-width, full-size-kana;
 $display: inline, inline-block, block, none, grid, flex, table, table-cell;
 $positions: static, relative, absolute, fixed, sticky;
